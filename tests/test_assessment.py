@@ -112,4 +112,3 @@ def test_dashboard_history_filter_comparison_and_summary_exports(tmp_path):
     assert summary_json.json()["scan"]["scan_id"] == later["scan_id"]
     assert summary_html.status_code == 200
     assert "Assessment summary" in summary_html.text
-
