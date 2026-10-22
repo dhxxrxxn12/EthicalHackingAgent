@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EthicalHackingAgent Dashboard</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; color: #202938; background: #f4f6f8; }
+    body { margin: 0; padding: 1rem; }
+    main { max-width: 1100px; margin: auto; }
+    .panel, .card { background: white; border: 1px solid #d1d5db; border-radius: .6rem; padding: 1rem; margin: 1rem 0; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem; }
+    label { display: block; font-weight: 700; margin-bottom: .35rem; }
+    input, button { font: inherit; padding: .6rem; }
+    input { width: min(100%, 38rem); box-sizing: border-box; }
+    button { cursor: pointer; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e7eb; text-align: left; padding: .55rem; overflow-wrap: anywhere; }
+    .error { color: #991b1b; }
+    .muted { color: #4b5563; }
+    @media (max-width: 650px) { table { font-size: .9rem; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>EthicalHackingAgent Dashboard</h1>
+  <p class="muted">Local-only passive inspection. Targets are validated by the server.</p>
+  <section class="panel">
+    <h2>New scan</h2>
+    <form id="scan-form">
+      <label for="target">localhost or loopback URL</label>
+      <input id="target" name="target" type="url" placeholder="http://127.0.0.1:8000/" required>
+      <button type="submit">Run passive scan</button>
+    </form>
+    <p id="scan-status" class="muted" role="status"></p>
+  </section>
+  <section class="panel">
+    <h2>Latest findings</h2>
+    <div id="findings"><p class="muted">Run a scan to see structured findings.</p></div>
+  </section>
+  <section class="grid" aria-label="Scan summary">
+    <div class="card"><h2>Scans</h2><p id="scan-count">0</p></div>
+    <div class="card"><h2>Severity totals</h2><ul id="severity-counts"></ul></div>
+  </section>
+  <section class="panel">
+    <h2>Recent scans</h2>
+    <form id="history-filter">
+      <label for="date-from">From (ISO date)</label><input id="date-from" type="date">
+      <label for="date-to">To (ISO date)</label><input id="date-to" type="date">
+      <label for="severity-filter">Severity</label>
+      <select id="severity-filter"><option value="">All severities</option><option>Informational</option><option>Low</option><option>Medium</option><option>High</option><option>Critical</option></select>
+      <button type="submit">Filter history</button>
+    </form>
+    <div id="history"><p class="muted">Loading…</p></div>
+  </section>
+  <section class="panel">
+    <h2>Compare completed scans</h2>
+    <form id="comparison-form">
+      <label for="earlier-scan">Earlier scan</label><select id="earlier-scan" required></select>
+      <label for="later-scan">Later scan</label><select id="later-scan" required></select>
+      <button type="submit">Compare</button>
+    </form>
+    <div id="comparison"><p class="muted">Select two scans.</p></div>
+  </section>
+</main>
+<script src="/dashboard.js" defer></script>
+</body>
+</html>
