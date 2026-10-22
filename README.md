@@ -133,3 +133,7 @@ No license has been specified yet. Add a license file if you intend to define pe
 ---
 
 **Author:** [dhxxrxxn12](https://github.com/dhxxrxxn12)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5306f0bd18f95042a64f98beb357f6a3670455db
